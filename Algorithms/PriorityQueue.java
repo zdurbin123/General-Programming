@@ -1,3 +1,24 @@
+/*Problem: 
+Suppose you work for a major airline and are given the job of writing the algorithm for processing upgrades into first class on various flights. Any frequent flyer can request an upgrade for his or her up-coming flight using this online system. Frequent flyers have different priorities, which are determined first by frequent flyer status (which can be, in order, silver, gold, platinum, and super) and then, if there are ties, by length of time in the waiting list. In addition, at any time prior to the flight, a frequent flyer can cancel his or her upgrade request (for instance, if he or she wants to take a different flight), using a confirmation code they got when he or she made his or her upgrade request. When it is time to determine upgrades for a flight that is about to depart, the gate agents inform the system of the number, 
+, of seats available in first class, and it needs to match those seats with the highest-priority passengers on the waiting list. Describe a system that can process upgrade requests and cancellations in O(logn)
+ time and can determine the highest-priority flyers on the waiting list in O(klogn) time, where k is the number of frequent flyers on the waiting list. */
+
+
+
+/*The solution is implemented using java with a class UpgradeRequestsNUA, which has a constructor for objects of type UpgradeRequestsNUA, which represent the upgrade requests for first class for the flight. The objects contain:
+- a flyer ID which is incremented each time a request is created
+-a frequent flyer status string which is either Gold, Silver, Platinum or Super and is inputted by the user who is creating the request 
+-a corresponding frequent flyer status number which is used as the key value to sort the priority queue and is assigned depending on the status that is entered by the user (Silver is status of 1, Gold is status of 2, Platinum is status of 3, Super is status of 4) 
+-a confirmation number which is also incremented each time a request is created and used by a locator array as an index where the location of the request in the priority queue is stored in locator[confirmationNum]
+-the time that the request was created
+The priority queue that is used to store the requests is a max heap, where the highest priority flyer is determined by the status (Super is highest), and then if there are ties when sorting the heap the time of the request is used as an auxiliary comparator, where the lowest time value has the higher priority. 
+The heap is represented by an array called Requests of length 50, where the amount of requests in the heap is the integer variable size + 1. The function shiftUp(int i) takes as a parameter the index i of a request in the heap. This index is then used to shift up the request until it does not have a higher priority then its “parent”. It does this “shifting up” using a swap function which swaps the request with its parent. This function is called either when a new request is added to the heap (insert function), or when a request is cancelled using its confirmation number (requestCancel function). The function recursively calls itself until it does not need to perform a swap.
+Similarly, the function shiftDown(int i) takes as parameter the index i of a request in the heap. This index is then used to shift down the request until it does not have a lower priority than its “child”. The caveat with this function is that it needs an additional priority compare if the request being shifted down (which would be the last element in the heap that was moved to the root) has the same priority as one of its children. Then the time that the request was made is used and if the time of the request being shifted down is lower (indicating an earlier request) than the child who has the same priority, it will stay put. The function recursively calls itself until it does not need to perform a swap.
+The swap function is how the two functions explained above perform the shifting. It is a relatively straightforward swapping of requests within the Requests array, however there is an additional swap that is done with the locators of the two elements being swapped. 
+The insert function uses the standard heap insert algorithm as described in the book, pseudocode is below:
+Input: Request object to be added to priority queue
+*/
+
 import java.io.*;
 import java.util.Scanner;
 
