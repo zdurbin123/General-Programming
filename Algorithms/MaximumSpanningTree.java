@@ -1,19 +1,16 @@
 /*Problem:
 Suppose you are given a diagram of a telephone network, which is a graph 
  whose vertices represent switching centers, and whose edges represent communication lines between two centers. The edges are marked by their bandwidth, that is, the maximum speed, in bits per second, that information can be transmitted along that communication line. The bandwidth of a path in 
- is the bandwidth of its lowest-bandwidth edge. Give an algorithm that, given a diagram and two switching centers 
- and 
-, will output the maximum bandwidth of a path between 
- and 
+ is the bandwidth of its lowest-bandwidth edge. Give an algorithm that, given a diagram and two switching centers a and b
+, will output the maximum bandwidth of a path between a and b
 . What is the running time of your algorithm?
 */
-
 
 
 /*Solution:
 The algorithm for the maximum spanning tree in G given a graph with vertices that represent switching centers and weighted edges that represent the bandwidth of the communication line between them is based on Dijkstra’s algorithm, which finds the “shortest” path to any vertex in a graph from a given vertex in G. There would be a label for each switching center which represents the bandwidth on a path to it from the given starting switching center, which would be initialized to 0 for all switching centers other than the starting one. Then for each vertex v beginning with the starting one, the algorithm would find all vertices i adjacent to it, and for each, it would calculate the minimum of the label of v and the bandwidth to it, and compare that result with the current label of i, updating the label of i if it is greater.
 The solution that I programmed using Java uses an adjacency matrix to store the edges, or communication lines, of the graph. The edges are objects of type CommunicationLine, which has three attributes associated with it, which are the two vertices (or switching centers, represented by sc1 and sc2) and the bandwidth of the edge (represented by bandwidth). Additionally, for the algorithm which is programmed in the maxBandwidth method, there is a HashMap called ‘vertexLabels’ used to store the label of each switching center, and a HashMap called ‘vertexVisited’ used to store key-value pair, where the key is a switching center which has already been ‘visited’ and the value is just its label after being visited and updated. The method takes 4 parameters, which are the start and end vertices, as well as the number of switching centers in the network, and a hashMap which simply maps the switching center name to the index that it corresponds to within the adjacency matrix. The method then implements the algorithm described above.
- When entering input, the user must label the switching centers with letters starting with A and moving sequentially in alphabetically order, with a limit of 10 switching centers. Then the user can tell the program which switching centers have a communication line between them, and finally indicate what the start and end switching centers are supposed to be. 
+When entering input, the user must label the switching centers with letters starting with A and moving sequentially in alphabetically order, with a limit of 10 switching centers. Then the user can tell the program which switching centers have a communication line between them, and finally indicate what the start and end switching centers are supposed to be. 
 */
 
 
