@@ -1,0 +1,17 @@
+<h1>Report Page</h1>
+
+<form action="/report" method="POST" id="report-form">
+    <!-- Gift Type -->
+    <label for="reportText">Please enter your reason for reporting {{charityName}}:</label>
+    <input type="text" name="reportText" id="reportText" required>
+    <select name="charityId" id="charityId" hidden>
+        <option value={{charityId}}></option> </select>
+<button type="submit">Submit Report</button>
+</form>
+<div id="reportErrors" class="error" hidden></div>
+
+<footer><button onclick="history.back()">Go Back</button></footer>
+
+<script src="/public/js/main.js"></script>
+<link rel="stylesheet" href="/public/css/main.css">
+

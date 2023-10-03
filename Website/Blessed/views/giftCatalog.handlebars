@@ -1,0 +1,49 @@
+
+<h1>Gift Catalog</h1><br>
+<section>
+    <ul>
+      {{#each gifts}}
+      <div class="row">
+        <div class="col-md-4">
+          <li>
+            <h4>GiftName: {{this.giftName}}</h4>
+            <h4>Price: ${{this.price}}</h4>
+            <h4>Category: {{this.category}}</h4>
+            <h4>Reviews: {{this.reviewText}}</h4>
+            </h4>
+          </li><br>
+        </div>
+        <!--<div class="col-md-2">
+          <select  id="selectedCharity" name="selectCharity" onchange="showDonateButton(this,'{{this._id}}');">
+            <option value="-1">-- Select Charity --</option>
+            {{#each ../charities}}
+              <option value="{{this._id}}">{{this.charityName}}</option>
+            {{/each}}
+          </select>
+        </div>-->
+        <div class="col-md-2">
+          <form action="/giftDonation" method="GET" id="gift-form">
+          <select  id="charityId" name="charityId" onchange="showDonateButton(this,'{{this._id}}');">
+            <option value="-1">-- Select Charity --</option>
+            {{#each ../charities}}
+              <option value="{{this._id}}">{{this.charityName}}</option>
+            {{/each}}
+          </select>
+           <select name="charityId" id="charityId" hidden>
+            <option value=""></option>
+           </select>
+           <select name="giftId" id="giftId" hidden>
+            <option value={{this._id}}></option>
+           </select>
+           <button type="submit" id="btnGiftDonate{{this._id}}" class="btn-donate" style="display:none;">Donate</button>
+           </form>
+          <!--<a href="/giftDonation" id="btnGiftDonate{{this._id}}" class="btn-donate" style="display:none;">Donate</a> -->
+        </div>
+      </div>
+      {{/each}}
+    </ul>
+</section>
+<a href="/charities">Charities</a>
+<a href="/protected">Protected</a>
+<a href="/logout">Logout</a>
+<script src="/public/js/main.js"></script>

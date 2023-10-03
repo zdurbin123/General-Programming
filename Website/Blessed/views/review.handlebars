@@ -1,0 +1,18 @@
+<h1>Review Page</h1>
+<form action="/review" method="POST" id="review-form">
+    <!-- Gift Type -->
+    <label for="reviewText">Please enter your review of {{charityName}}:</label>
+    <input type="text" name="reviewText" id="reviewText" required>
+    <label for="reviewRating">Rating:</label>
+    <input type="number" name="reviewRating" id="reviewRating" required>
+    <select name="charityId" id="charityId" hidden>
+        <option value={{charityId}}></option> </select>
+<button type="submit">Submit Review</button>
+</form>
+<div id="reportErrors" class="error" hidden></div>
+
+<footer><button onclick="history.back()">Go Back</button></footer>
+
+<script src="/public/js/main.js"></script>
+<link rel="stylesheet" href="/public/css/main.css">
+

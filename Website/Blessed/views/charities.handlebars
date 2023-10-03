@@ -1,0 +1,12 @@
+<h1>Charities</h1>
+<div class="error hidden" id="error-container">
+    <div class="alert alert-danger text-goes-here"></div>
+</div>
+{{#each charities}}
+    {{#if isCharity}}
+    <article class="Charity">
+      <h2><a href="/charities/{{_id}}">{{charityName}}</a></h2>
+      <p>{{details}}</p>
+    {{/if}}
+{{/each}}
+<script src="/public/js/main.js"></script>

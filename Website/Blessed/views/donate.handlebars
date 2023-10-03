@@ -1,0 +1,85 @@
+<h1>Donate Page</h1>
+<div class="error hidden" id="error-container">
+    <div class="alert alert-danger text-goes-here"></div>
+</div>
+{{#each donations}}  
+    <article class="Donation">
+      <h2>Donor: {{userName}}</h2>
+      <h3>Charity: {{charityName}}</h3>
+      <p>Donation: {{giftName}}</p>
+      <p>Comments: {{comments}}</p>
+      <form action="/comment" method="POST" id="comment-form">
+    <label for="comment">Leave a comment:</label>
+    <input type="text" name="comment" id="comment" required>
+    <select name="donationId" id="donationId" hidden>
+        <option value={{_id}}></option> </select>
+        </form>
+{{/each}}
+<script src="/public/js/main.js"></script>
+<link rel="stylesheet" href="/public/css/main.css">
+
+<form action="/donate" id="donate-form" method="POST">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Gift Type -->
+    <label for="charityName">Charity Name (input 'All' to donate equally to all charities):</label>
+    <input type="text" name="charityName" id="charityName" required>
+
+    <label for="giftName">Donation Type:</label>
+    <select name="giftName" id="giftName">
+        <option value="one-time-payment">One-time</option>
+        <option value="monthly-payment">Monthly</option>
+                </select>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Gift Amount -->
+                <label for="amount">Amount:</label>
+                <input type="number" name="amount" id="amount" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <label for="userName">Username:</label>
+                <input type="text" name="userName" id="userName" required>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Billing Information -->
+                <label for="billingName">Name:</label>
+                <input type="text" name="billingName" id="billingName" required>
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-12">
+                <label for="billingAddress">Address:</label>
+                <input type="text" name="billingAddress" id="billingAddress" required>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <label for="giftNote">Gift Note (optional):</label>
+                <input type="text" name="giftNote" id="giftNote">
+            </div>
+        </div>
+    
+        <div class="row">
+            <div class="col-md-4 submit-btn">
+                <button type="submit">Donate</button>
+            </div>
+        </div>
+    </div>
+</form>
+<div id="donateErrors" class="error" hidden></div>
+
+
+
+<footer><button onclick="history.back()">Go Back</button></footer>

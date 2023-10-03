@@ -1,0 +1,51 @@
+<h1 id="charityName">{{charity.charityName}}</h1>
+<div class="error hidden" id="error-container">
+    <div class="alert alert-danger text-goes-here"></div>
+</div>
+<section>
+    {{#if charity.reviews.length}}
+    <h2>Reviews</h2>
+    <ul>
+      {{#each charity.reviews}}
+        <li>{{this.rating}}: {{this.reviewText}}</li>
+      {{/each}}
+    </ul>
+    {{/if}}
+</section>
+
+<section>
+    {{#if donations.length}}
+    <h2>Past Donations</h2>
+    <ul>
+      {{#each donations}}
+        <li>{{this.userName}}: {{this.giftName}}</li>
+      {{/each}}
+    </ul>
+    {{/if}}
+</section>
+
+
+<form id="donate-button">
+    <input type="submit" value="Donate"/>
+</form>
+
+<form id="report-button" action="/report" method="GET">
+    <button type="submit">Report</button>
+    <select name="charityId" id="charityId" hidden>
+        <option value={{charity._id}}></option> </select>
+    <select name="charityName" id="charityName" hidden>
+        <option value={{charity.charityName}}></option> </select>
+</form>
+
+<form id="review-button" action="/review" method="GET">
+    <button type="submit">Leave a Review</button>
+    <select name="charityId" id="charityId" hidden>
+        <option value={{charity._id}}></option> </select>
+    <select name="charityName" id="charityName" hidden>
+        <option value={{charity.charityName}}></option> </select>
+</form>
+
+<br>
+
+<footer><button onclick="history.back()">Go Back</button></footer>
+<script src="/public/js/main.js"></script>
