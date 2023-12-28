@@ -24,7 +24,7 @@ Run the Redis Server in the terminal locally using the commands:
 1. `redis-server`
 2. `redis-cli`
 
-   ### Run The React and Apollo Client front-end Locally 
+### Run The React and Apollo Client front-end Locally 
 1. Make sure you are in the directory 'Virtual_Library_Client' 
 2. Run the `npm i` command to install all dependencies for the application.
 4. Execute the command `npm run dev` in the terminal. This will start the React client
